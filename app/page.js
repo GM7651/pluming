@@ -7,6 +7,8 @@ import Nav from "./components/nav";
 import Footer from "./components/footer";
 import Accordion from './components/faq'; // Adjust the path if needed
 import Contact from "./components/contact";
+import Reviews from './components/reviews';
+import ServiceAreas from "./components/ServiceAreas";
 
 
 
@@ -15,48 +17,51 @@ import Contact from "./components/contact";
 
 export default function Home() {
 
-    const [isTextVisible, setIsTextVisible] = useState(false);
-    const textSectionRef = useRef(null);
-  
-    useEffect(() => {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setIsTextVisible(true);
-            observer.unobserve(entry.target); // Stop observing once visible
-          }
-        },
-        { threshold: 0.5 }
-      );
-  
-      if (textSectionRef.current) {
-        observer.observe(textSectionRef.current);
-      }
-  
-      return () => {
-        if (textSectionRef.current) {
-          observer.unobserve(textSectionRef.current);
-        }
-      };
-    }, []);
-  
+  const [isTextVisible, setIsTextVisible] = useState(false);
+  const textSectionRef = useRef(null);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsTextVisible(true);
+          observer.unobserve(entry.target); // Stop observing once visible
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    const currentRef = textSectionRef.current; // Create a stable reference
+
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef); // Use the stable reference
+      }
+    }
+    };
+  }, []);
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 overflow-x-hidden">
             <Nav /> 
 
   <section className="dark:bg-black dark:text-gray-800">
   <div className="container flex flex-col justify-center px-4 py-12 mx-auto lg:flex-row lg:justify-between lg:items-center lg:space-x-6 lg:py-24">
     {/* Video Section */}
     <div className="flex items-center justify-center p-4 mt-8 lg:mt-0 h-52 sm:h-72 md:h-80 lg:h-96 xl:h-[28rem] 2xl:h-[32rem] w-full lg:w-1/2">
-      <video
-        src="/plumingV1.mp4"
-        alt="Plumbing Video"
-        className="object-contain w-full h-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl"
-        autoPlay
-        muted
-      />
-    </div>
+     <video
+      src="/plumingV1.mp4"
+      className="object-contain w-full h-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl"
+      autoPlay
+      muted
+      playsInline
+      loop
+    />
+</div>
 
     {/* Text and Buttons Section */}
     <div className="flex flex-col justify-center p-6 text-center lg:max-w-md xl:max-w-lg lg:text-left lg:w-1/2">
@@ -172,13 +177,14 @@ export default function Home() {
                 </dl>
               </div>
             </div>
-            <img
-              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw4fHxjb21wdXRlcnxlbnwwfDB8fHwxNjkxODE2NjY3fDA&ixlib=rb-4.0.3&q=80&w=1080"
-              alt="Product screenshot"
-              className="w-full animate-slideIn max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl rounded-xl shadow-xl ring-1 ring-gray-400/10"
-              width="2432"
-              height="1442"
-            />
+            <Image
+    src="/img1.png"
+    alt="Product screenshot"
+  className="w-full animate-slideIn max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl rounded-xl shadow-xl ring-1 ring-gray-400/10"
+  width={2432}
+  height={1442}
+  priority
+/>
           </div>
         </div>
       </section>
@@ -198,11 +204,14 @@ export default function Home() {
       <div className="container mx-auto grid gap-8 sm:grid-cols-2 lg:grid-cols-3 px-4 sm:px-6 lg:px-8">
         <div className="bg-white p-8 rounded-lg shadow-md text-center">
           <div className="flex items-center justify-center mb-4">
-          <img 
-            src="/img2.png" 
-             alt="Moller's Logo" 
-             className="w-24 h-auto sm:w-28 md:w-32 lg:w-36 xl:w-40 2xl:w-44 shadow-lg" 
-             />      
+          <Image
+  src="/img2.png"
+  alt="Moller's Logo"
+  className="w-24 h-auto sm:w-28 md:w-32 lg:w-36 xl:w-40 2xl:w-44 shadow-lg"
+  width={96} // Set a reasonable width value based on your design
+  height={96} // Set a reasonable height value based on your design
+  priority // Optional if you want to preload this image
+/>     
             </div>
           <h3 className="text-xl font-semibold text-gray-900">Plumbing Services</h3>
           <p className="text-gray-700 mt-4">
@@ -211,11 +220,14 @@ export default function Home() {
       
         <div className="bg-white p-8 rounded-lg shadow-md text-center">
           <div className="flex items-center justify-center mb-4">
-          <img 
-            src="/img1.png" 
-            alt="Moller's Logo" 
-        className="w-24 h-auto sm:w-28 md:w-32 lg:w-36 xl:w-40 2xl:w-44 shadow-lg" 
-        />      
+          <Image
+  src="/img1.png"
+  alt="Moller's Logo"
+  className="w-24 h-auto sm:w-28 md:w-32 lg:w-36 xl:w-40 2xl:w-44 shadow-lg"
+  width={96} // Set a reasonable width value based on your design
+  height={96} // Set a reasonable height value based on your design
+  priority // Optional if you want to preload this image
+/>   
         </div>
           <h3 className="text-xl font-semibold text-gray-900">Faucet Repairs</h3>
           <p className="text-gray-700 mt-4">
@@ -225,11 +237,14 @@ export default function Home() {
       
         <div className="bg-white p-8 rounded-lg shadow-md text-center">
           <div className="flex items-center justify-center mb-4">
-          <img 
-            src="/img3.png" 
-            alt="Moller's Logo" 
-        className="w-24 h-auto sm:w-28 md:w-32 lg:w-36 xl:w-40 2xl:w-44 shadow-lg" 
-        />      </div>
+          <Image
+  src="/img3.png"
+  alt="Moller's Logo"
+  className="w-24 h-auto sm:w-28 md:w-32 lg:w-36 xl:w-40 2xl:w-44 shadow-lg"
+  width={96} // Set a reasonable width value based on your design
+  height={96} // Set a reasonable height value based on your design
+  priority // Optional if you want to preload this image
+/>      </div>
           <h3 className="text-xl font-semibold text-gray-900">Water Heater</h3>
           <p className="text-gray-700 mt-4">
             Are you constantly running out of hot water while taking a shower? Sinani Piping & Heating can make sure you never get this problem again.
@@ -238,11 +253,14 @@ export default function Home() {
       
         <div className="bg-white p-8 rounded-lg shadow-md text-center">
           <div className="flex items-center justify-center mb-4">
-          <img 
-            src="/img4.png" 
-            alt="Moller's Logo" 
-        className="w-24 h-auto sm:w-28 md:w-32 lg:w-36 xl:w-40 2xl:w-44 shadow-lg" 
-        />      
+          <Image
+  src="/img4.png"
+  alt="Moller's Logo"
+  className="w-24 h-auto sm:w-28 md:w-32 lg:w-36 xl:w-40 2xl:w-44 shadow-lg"
+  width={96} // Set a reasonable width value based on your design
+  height={96} // Set a reasonable height value based on your design
+  priority // Optional if you want to preload this image
+/>    
         </div>
           <h3 className="text-xl font-semibold text-gray-900">Drain Cleaning</h3>
           <p className="text-gray-700 mt-4">
@@ -252,11 +270,14 @@ export default function Home() {
       
         <div className="bg-white p-8 rounded-lg shadow-md text-center">
           <div className="flex items-center justify-center mb-4">
-          <img 
-            src="/img5.png" 
-            alt="Moller's Logo" 
-        className="w-24 h-auto sm:w-28 md:w-32 lg:w-36 xl:w-40 2xl:w-44 shadow-lg" 
-        />      
+          <Image
+  src="/img5.png"
+  alt="Moller's Logo"
+  className="w-24 h-auto sm:w-28 md:w-32 lg:w-36 xl:w-40 2xl:w-44 shadow-lg"
+  width={96} // Set a reasonable width value based on your design
+  height={96} // Set a reasonable height value based on your design
+  priority // Optional if you want to preload this image
+/>     
         </div>
           <h3 className="text-xl font-semibold text-gray-900">Emergency Plumber</h3>
           <p className="text-gray-700 mt-4">
@@ -267,11 +288,14 @@ export default function Home() {
       
         <div className="bg-white p-8 rounded-lg shadow-md text-center">
           <div className="flex items-center justify-center mb-4">
-          <img 
-            src="/img7.png" 
-            alt="Moller's Logo" 
-            className="w-24 h-auto sm:w-28 md:w-32 lg:w-36 xl:w-40 2xl:w-44 shadow-lg" 
-            />      
+          <Image
+  src="/img7.png"
+  alt="Moller's Logo"
+  className="w-24 h-auto sm:w-28 md:w-32 lg:w-36 xl:w-40 2xl:w-44 shadow-lg"
+  width={96} // Set a reasonable width value based on your design
+  height={96} // Set a reasonable height value based on your design
+  priority // Optional if you want to preload this image
+/>     
             </div>
           <h3 className="text-xl font-semibold text-gray-900">Sink Installation</h3>
           <p className="text-gray-700 mt-4">
@@ -282,8 +306,10 @@ export default function Home() {
       </div>
     </div>
     <Contact />
+    <Reviews />
 
       <Accordion />
+      <ServiceAreas />
 
     <Footer />
 

@@ -8,75 +8,134 @@ const Accordion = () => {
   };
 
   return (
-    <section className="py-10 bg-gray-50 sm:py-16 lg:py-24">
-      <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
-            FAQ
-          </h2>
-        </div>
-        <div className="max-w-3xl text-black mx-auto mt-8 space-y-6 md:mt-16">
-          {[
-            {
-              question: "How quickly can you respond to a plumbing emergency?",
-              answer: "We aim to respond to plumbing emergencies as quickly as possible. Our team is on standby 24/7, ready to assist you when you need us most.",
-            },
-            {
-              question: "What is the pricing for common plumbing services?",
-              answer: "Our pricing is transparent and competitive. We provide estimates for common services, such as leak repairs, drain cleaning, and water heater installation. Contact us for a detailed quote based on your needs.",
-            },
-            {
-              question: "Do you offer guarantees or warranties on your services?",
-              answer: "Yes, we stand behind our work with a satisfaction guarantee and offer warranties on certain services and parts. We believe in delivering reliable and long-lasting plumbing solutions.",
-            },
-            {
-              question: "Can you help with both residential and commercial plumbing issues?",
-              answer: "Absolutely! We handle both residential and commercial plumbing jobs. Whether it's a minor home repair or a large-scale commercial project, our team has the experience to manage it all.",
-            },
-          ].map((item, index) => (
-            <div
-              key={index}
-              className="transition-all duration-200 bg-white border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-50"
-            >
-              <button
-                type="button"
-                className="flex items-center justify-between w-full px-4 py-5 sm:p-6"
-                onClick={() => handleToggle(index)}
-              >
-                <span className="flex text-lg font-semibold text-black">{item.question}</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  className={`w-6 h-6 text-gray-400 transform transition-transform ${
-                    activeIndex === index ? "rotate-180" : "rotate-0"
-                  }`}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  ></path>
-                </svg>
-              </button>
-              {activeIndex === index && (
-                <div className="px-4 pb-5 sm:px-6 sm:pb-6">
-                  <p>{item.answer}</p>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-        <p className="text-center text-gray-600 text-base mt-9">
-          Still have questions?{" "}
-          <span className="cursor-pointer font-medium text-tertiary transition-all duration-200 hover:text-tertiary">
-            Contact our support
-          </span>
-        </p>
+    <section className="bg-black dark:bg-black">
+  <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <h1 className="text-lg sm:text-2xl md:text-3xl font-semibold text-white">FAQ's</h1>
+
+    <hr className="my-6 border-gray-200 dark:border-gray-700" />
+
+    <div>
+      <div>
+        <button
+          onClick={() => handleToggle(0)}
+          className="flex items-center w-full text-left focus:outline-none"
+        >
+          <svg
+            className="w-6 h-6 text-blue-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 12H4" />
+          </svg>
+          <h1 className="mx-4 text-base sm:text-lg md:text-xl text-gray-200">What areas do you cover?</h1>
+        </button>
+        {activeIndex === 0 && (
+          <div className="flex mt-4 md:mt-8">
+            <span className="border border-blue-500 hidden sm:block"></span>
+            <p className="max-w-lg sm:max-w-xl lg:max-w-2xl px-4 text-sm sm:text-base text-gray-400">
+              We proudly serve all of New York, including New York City, Brooklyn, Queens, and the Bronx, as well as the entire state of New Jersey.
+            </p>
+          </div>
+        )}
       </div>
-    </section>
+
+      <hr className="my-6 border-gray-200 dark:border-gray-700" />
+
+      <div>
+        <button
+          onClick={() => handleToggle(1)}
+          className="flex items-center w-full text-left focus:outline-none"
+        >
+          <svg
+            className="w-6 h-6 text-blue-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <h1 className="mx-4 text-base sm:text-lg md:text-xl text-gray-200">
+            What are your emergency plumbing services?
+          </h1>
+        </button>
+        {activeIndex === 1 && (
+          <div className="flex mt-4 md:mt-8">
+            <span className="border border-blue-500 hidden sm:block"></span>
+            <p className="max-w-lg sm:max-w-xl lg:max-w-2xl px-4 text-sm sm:text-base text-gray-400">
+              Our emergency services include leak repairs, pipe bursts, water heater issues, and severe drain blockages. We’re available 24/7 to handle urgent plumbing problems to prevent further damage.
+            </p>
+          </div>
+        )}
+      </div>
+
+      <hr className="my-6 border-gray-200 dark:border-gray-700" />
+
+      <div>
+        <button
+          onClick={() => handleToggle(2)}
+          className="flex items-center w-full text-left focus:outline-none"
+        >
+          <svg
+            className="w-6 h-6 text-blue-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <h1 className="mx-4 text-base sm:text-lg md:text-xl text-gray-200">
+            How do I know if my drain is clogged or if there’s a bigger issue?
+          </h1>
+        </button>
+        {activeIndex === 2 && (
+          <div className="flex mt-4 md:mt-8">
+            <span className="border border-blue-500 hidden sm:block"></span>
+            <p className="max-w-lg sm:max-w-xl lg:max-w-2xl px-4 text-sm sm:text-base text-gray-400">
+              Slow draining, gurgling sounds, and foul odors can indicate a clog, but recurring blockages may suggest a bigger issue. Our technicians can assess and resolve both minor clogs and major drainage problems.
+            </p>
+          </div>
+        )}
+      </div>
+
+      <hr className="my-6 border-gray-200 dark:border-gray-700" />
+
+      <div>
+        <button
+          onClick={() => handleToggle(3)}
+          className="flex items-center w-full text-left focus:outline-none"
+        >
+          <svg
+            className="w-6 h-6 text-blue-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <h1 className="mx-4 text-base sm:text-lg md:text-xl text-gray-200">
+            Do you offer free estimates for plumbing services?
+          </h1>
+        </button>
+        {activeIndex === 3 && (
+          <div className="flex mt-4 md:mt-8">
+            <span className="border border-blue-500 hidden sm:block"></span>
+            <p className="max-w-lg sm:max-w-xl lg:max-w-2xl px-4 text-sm sm:text-base text-gray-400">
+              Yes, we provide free estimates for all plumbing services. Our team will evaluate your needs and offer a transparent quote before any work begins.
+            </p>
+          </div>
+        )}
+      </div>
+
+      <hr className="my-6 border-gray-200 dark:border-gray-700" />
+    </div>
+  </div>
+</section>
+
   );
 };
 

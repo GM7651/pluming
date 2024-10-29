@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,14 +10,22 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center p-4 lg:px-6 xl:px-8">
         {/* Logo */}
         <div className="flex flex-col items-center justify-center w-full md:w-auto md:pl-0 lg:relative lg:m-0 lg:h-full lg:px-0 lg:flex lg:justify-start">
-          <img 
-            src="/plumbing.png" 
-            alt="Moller's Logo" 
-            className="w-20 h-auto sm:w-24 md:w-28 lg:w-24 xl:w-20 2xl:w-16 shadow-lg"
-          />
+        <Image 
+  src="/plumbing.png" 
+  alt="Moller's Logo" 
+  width={100} 
+  height={100} // Set your desired height to match the width or adjust as needed
+  className="h-auto sm:w-24 md:w-28 lg:w-24 xl:w-20 2xl:w-16 shadow-lg"
+/>
         </div>
-      <div className='mr-24'><h1 className='text-black'>hi</h1></div>
-
+        <div className="mt-8 flex justify-center">
+          <a 
+            href="tel:+1234567890" 
+            className="px-6 py-3 bg-red-600 text-white rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mr-96"
+          >
+            Call Us Available 24/7
+          </a>
+        </div>
         {/* Nav Links for medium and larger screens */}
         <ul className="hidden md:flex items-center space-x-4 lg:space-x-6 xl:space-x-8 font-semibold text-base lg:text-lg">
           <li>
@@ -30,7 +39,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link href="/about" className="text-black">
+            <Link href="/location" className="text-black">
               About Us
             </Link>
           </li>
