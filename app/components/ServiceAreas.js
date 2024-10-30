@@ -1,10 +1,29 @@
 // File: components/ServiceAreas.js
-
+"use client";
 import React, { useState } from "react";
+import zipcodes from "zipcodes";
 
 const ServiceAreas = () => {
   const [isNYExpanded, setNYExpanded] = useState(false);
   const [isNJExpanded, setNJExpanded] = useState(false);
+  const [zipCode, setZipCode] = useState("");
+  const [serviceMessage, setServiceMessage] = useState("");
+
+  const handleZipCheck = () => {
+    const location = zipcodes.lookup(zipCode);
+    
+    if (location) {
+      if (location.state === "NY") {
+        setServiceMessage("We serve your area in New York!");
+      } else if (location.state === "NJ") {
+        setServiceMessage("We serve your area in New Jersey!");
+      } else {
+        setServiceMessage("Sorry, we do not currently serve this area.");
+      }
+    } else {
+      setServiceMessage("Invalid ZIP code. Please try again.");
+    }
+  };
 
   return (
     <section className="bg-gray-100 py-16">
@@ -14,59 +33,39 @@ const ServiceAreas = () => {
           Our plumbing services cover a wide range of areas throughout New York and New Jersey.
         </p>
 
-        <div className="space-y-8">
-          {/* New York Section */}
-          <div className="bg-white shadow-lg rounded-lg p-6">
-            <button
-              onClick={() => setNYExpanded(!isNYExpanded)}
-              className="w-full text-left flex justify-between items-center font-semibold text-lg text-gray-800"
-            >
-              New York
-              <span className="text-gray-600">{isNYExpanded ? "-" : "+"}</span>
-            </button>
-            {isNYExpanded && (
-              <ul className="mt-4 text-gray-700 pl-6 list-disc space-y-1">
-                <li>Manhattan</li>
-                <li>Brooklyn</li>
-                <li>Queens</li>
-                <li>Staten Island</li>
-                <li>Bronx</li>
-                <li>Long Island</li>
-                <li>Westchester County</li>
-                <li>Buffalo</li>
-                <li>Rochester</li>
-                <li>Syracuse</li>
-                {/* Add more New York locations as needed */}
-              </ul>
-            )}
-          </div>
+        {/* Zip Code Check Section */}
+        <div className="mb-8 flex flex-col items-center space-y-4 sm:flex-row sm:space-y-0 sm:space-x-2">
+  <input
+    type="text"
+    placeholder="Enter your zip code"
+    value={zipCode}
+    onChange={(e) => setZipCode(e.target.value)}
+    className="border border-gray-300 text-black p-3 rounded-lg w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
+  />
+  <button
+    onClick={handleZipCheck}
+    className="bg-blue-500 text-white font-semibold p-3 rounded-lg hover:bg-blue-600 w-full sm:w-auto"
+  >
+    Check Service Area
+  </button>
+  {serviceMessage && (
+    <p className="mt-4 text-gray-700 text-center sm:text-left sm:mt-0 sm:ml-4">
+      {serviceMessage}
+    </p>
+  )}
+</div>
 
-          {/* New Jersey Section */}
-          <div className="bg-white shadow-lg rounded-lg p-6">
-            <button
-              onClick={() => setNJExpanded(!isNJExpanded)}
-              className="w-full text-left flex justify-between items-center font-semibold text-lg text-gray-800"
-            >
-              New Jersey
-              <span className="text-gray-600">{isNJExpanded ? "-" : "+"}</span>
-            </button>
-            {isNJExpanded && (
-              <ul className="mt-4 text-gray-700 pl-6 list-disc space-y-1">
-                <li>Newark</li>
-                <li>Jersey City</li>
-                <li>Paterson</li>
-                <li>Elizabeth</li>
-                <li>Edison</li>
-                <li>Trenton</li>
-                <li>Camden</li>
-                <li>Clifton</li>
-                <li>Hoboken</li>
-                <li>Atlantic City</li>
-                {/* Add more New Jersey locations as needed */}
-              </ul>
-            )}
-          </div>
-        </div>
+      </div>
+
+      <div className="flex justify-center items-center mt-8">
+        <video
+          src="vid5.mp4"
+          className="w-full h-auto max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl rounded-lg shadow-lg mr-4 sm:mr-8 md:mr-12 lg:mr-16 xl:mr-20 2xl:mr-24"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
       </div>
     </section>
   );
