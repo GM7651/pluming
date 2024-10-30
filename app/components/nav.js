@@ -52,7 +52,7 @@ const Navbar = () => {
           </li>
           <li className="p-3 xl:p-6 relative group">
             <Link href="/about">
-              <span className="relative text-black">More Info</span>
+              <span className="relative text-black">Do We Serve In Your Area ?</span>
             </Link>
             <div className="absolute left-0 right-0 bottom-2 h-1 bg-red-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </li>

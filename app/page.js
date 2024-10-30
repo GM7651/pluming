@@ -17,21 +17,24 @@ export default function Home() {
 
   // Video slideshow interval
   useEffect(() => {
+    if (typeof window !== 'undefined') {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % videos.length);
     }, 5000);
-
+  }
     return () => clearInterval(interval);
   }, [videos.length]);
 
   // Intersection Observer for text visibility
   useEffect(() => {
+    if (typeof window !== 'undefined') {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsTextVisible(true);
           observer.unobserve(entry.target);
         }
+        
       },
       { threshold: 0.5 }
     );
@@ -44,6 +47,7 @@ export default function Home() {
       if (textSectionRef.current) {
         observer.unobserve(textSectionRef.current);
       }
+    }
     };
   }, []);
 
