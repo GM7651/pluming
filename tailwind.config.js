@@ -16,9 +16,14 @@ module.exports = {
           '0%': { opacity: '0', transform: 'translateX(-100%)' },
           '100%': { opacity: '1', transform: 'translateX(0)' },
         },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
       },
       animation: {
         slideIn: 'slideIn 0.6s ease-out forwards',
+        fadeIn: 'fadeIn 2s ease forwards',
       },
     },
   },

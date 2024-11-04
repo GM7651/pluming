@@ -1,3 +1,6 @@
+
+import Image from "next/image";
+
 import React, { useEffect, useRef } from 'react';
 
 const Reviews = () => {
@@ -56,12 +59,14 @@ const Reviews = () => {
             </p>
             
             {/* Positioning the logo at the bottom left */}
-            <img
+            <Image
               src="/review.png"
               alt="Google Verified Review"
-              className="w-16 h-10 sm:w-16 sm:h-10 shadow-lg absolute bottom-2 left-2"
-            />
-            
+                width={100} // Slightly smaller width
+                height={30} // Slightly smaller height
+                className="w-12 h-auto sm:w-16 md:w-20 lg:w-24 xl:w-28 2xl:w-32 absolute bottom-2 left-2"
+                />
+
             <div className="flex items-center justify-center space-x-1 sm:space-x-2 mt-4">
               {[...Array(5)].map((_, i) => (
                 <svg
