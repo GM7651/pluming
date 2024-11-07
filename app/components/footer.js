@@ -43,7 +43,7 @@ export default function Footer() {
         </div>
       </div>
     </div>
-    <div className="w-full mt-10 py-10 border-t border-zinc-200 font-inter text-center text-xs text-zinc-400">Copyright © Geri Mato
+    <div className="w-full mt-10 py-10 border-t border-zinc-200 font-inter text-center text-xs text-zinc-400">Copyright © Sinani Piping & Heating Corp.
     </div>
   </div>
 </footer>

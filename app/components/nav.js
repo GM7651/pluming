@@ -22,10 +22,10 @@ const handleScroll = (e, sectionId) => {
           <div className="text-3xl font-bold leading-none flex items-center space-x-3 cursor-pointer">
           <div className="text-3xl font-bold leading-none cursor-pointer flex items-center">
           <Image 
-            src="/plumbing.png" 
+            src="/plumbing3.png" 
             alt="logo" 
-            width={100} // Increased width
-            height={100} // Increased height
+            width={200} // Increased width
+            height={200} // Increased height
             className="h-24 w-24" // Apply larger Tailwind size classNamees
             style={{ width: '100px', height: '100px' }} // Inline style for consistent sizing
           />
@@ -157,12 +157,12 @@ const handleScroll = (e, sectionId) => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="navbar-menu fixed inset-0 z-50 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-gray-100 border-r shadow-lg overflow-y-auto">
+        <div className="navbar-menu fixed inset-0 z-50 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-gray-100  border-r shadow-lg overflow-y-auto">
           <div className="flex items-center justify-between mb-8">
             <Link href="/" passHref>
             <div className="text-3xl font-bold leading-none cursor-pointer flex items-center">
             <Image 
-              src="/plumbing.png" 
+              src="/plumbing3.png" 
               alt="logo" 
               width={100} // Increased width
               height={100} // Increased height

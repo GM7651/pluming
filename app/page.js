@@ -8,6 +8,8 @@ import Reviews from './components/reviews';
 import ServiceAreas from "./components/ServiceAreas";
 
 export default function Home() {
+
+  
   const [isTextVisible, setIsTextVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const textSectionRef = useRef(null);
@@ -55,11 +57,11 @@ export default function Home() {
       <Nav /> 
 
       {/* Primary Static Video Section */}
-      <section className="dark:bg-black dark:text-gray-800">
-        <div className="container flex flex-col justify-center px-4 py-12 mx-auto lg:flex-row lg:justify-between lg:items-center lg:space-x-6 lg:py-24">
+      <section className="dark:bg-black  dark:text-gray-800">
+      <div className="container flex flex-col justify-center px-4 py-8 mx-auto sm:px-6 md:px-8 lg:flex-row lg:justify-between lg:items-center lg:space-x-6 lg:py-12 xl:px-12 xl:py-16">
         <div className="flex items-center justify-center p-4 mt-8 lg:mt-0 h-72 sm:h-80 md:h-96 lg:h-[28rem] xl:h-[32rem] 2xl:h-[36rem] w-full max-w-screen-2xl">
           <video
-            src="/plumingV1.mp4"
+            src="/plumbingV2.mp4"
             className="object-contain w-full h-full max-w-screen-2xl"
             autoPlay
             muted
@@ -77,17 +79,22 @@ export default function Home() {
     <span className="text-red-500">Sinani</span> Piping & Heating Corp.
   </h1>
 </div>
-            <p className="mt-6 text-white text-base sm:text-lg md:text-xl sm:mb-12">
+            <p className="mt-6 text-white text-base italic sm:text-lg md:text-xl sm:mb-12">
               Your Trusted Solution for All Plumbing Needs
             </p>
 
             <div className="flex flex-col items-center justify-center gap-4 mt-6 md:flex-row">
-              <a
-                className="inline-block text-center w-full md:w-auto min-w-[200px] px-6 py-4 text-white transition-all rounded-md shadow-lg bg-gradient-to-r from-red-600 to-red-500 hover:bg-gradient-to-b hover:shadow-2xl"
-                href="#"
-              >
-                Book Appointment
-              </a>
+            <a
+  className="inline-block text-center w-full md:w-auto min-w-[200px] px-6 py-4 text-white transition-all rounded-md shadow-lg bg-gradient-to-r from-red-600 to-red-500 hover:bg-gradient-to-b hover:shadow-2xl"
+  href="#"
+  onClick={(e) => {
+    e.preventDefault();
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+  }}
+>
+  Book Appointment
+</a>
+
               <a
                 className="inline-block w-full text-center md:w-auto min-w-[200px] px-6 py-4 text-white transition-all bg-gray-700 rounded-md shadow-lg hover:bg-gray-900 dark:bg-white dark:text-gray-800 dark:shadow-neutral-700 hover:text-white"
                 href="#"
